@@ -16,6 +16,11 @@ public class Thread1 extends Thread {
 
 	public void run() {
 		for (int i = 0; i < 5; i++) {
+
+			if (2 == i && "B".equals(name)) {
+				this.yield();
+			}
+
 			System.out.println(name + "运行  :  " + i);
 			try {
 				sleep((int) Math.random() * 10);
@@ -26,10 +31,18 @@ public class Thread1 extends Thread {
 	}
 
 	public static void main(String[] args) {
-		Thread1 mTh1 = new Thread1("A");
-		Thread1 mTh2 = new Thread1("B");
-		mTh1.start();
-		mTh2.start();
+		Thread1 th1 = new Thread1("A");
+		Thread1 th2 = new Thread1("B");
+		// th1.setPriority(2);
+		// th2.setPriority(10);
+		th1.start();
+		System.out.println("th1 name==" + th1.name);
+		th2.start();
+		// for (int i = 0; i < 10; i++) {
+		// System.out.println("i==" + i);
+		//
+		// }
+		System.out.println("th2 name==" + th2.name);
 	}
 }
 
